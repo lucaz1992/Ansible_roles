@@ -3,12 +3,13 @@
     name:
     - docker<7.0
     - docker-compose
+    - requests==2.31.0
 - name: clone repository
   git:
     repo: "{{ git_repository }}"
     dest: "{{ deployment_path }}"
     version: "{{ git_branch }}"
-- name: run docker-compose
+- name: run docker-compose up
   docker_compose:
     project_src: "{{ deployment_path }}"
     build: yes
