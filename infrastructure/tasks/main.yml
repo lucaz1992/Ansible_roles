@@ -1,0 +1,14 @@
+- name: Install packages
+  pip:
+    name:
+    - docker<7.0
+    - docker-compose
+- name: clone repository
+  git:
+    repo: "{{ git_repository }}"
+    dest: "{{ deployment_path }}"
+    version: "{{ git_branch }}"
+- name: run docker-compose
+  docker_compose:
+    project_src: "{{ deployment_path }}"
+    build: yes
